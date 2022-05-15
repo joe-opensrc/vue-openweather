@@ -3,10 +3,10 @@
   const foo = ref(0) 
 
   onMounted(() => { 
-   console.log("RAR") 
+   console.log(foo) 
   })
 </script>
 
 <template>
-  
+  <div>PHOLD</div>  
 </template>
