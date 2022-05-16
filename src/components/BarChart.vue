@@ -3,10 +3,10 @@
   const foo = ref(0) 
 
   onMounted(() => { 
-   console.log(foo) 
+    console.log("const foo = ref(" + foo.value + ")") 
   })
 </script>
 
 <template>
-  <div>PHOLD</div>  
+  <div>foo: {{ foo }}</div>  
 </template>
