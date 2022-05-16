@@ -1,10 +1,10 @@
 <script setup>
-  import ForecastChart from './components/ChartsForecast.vue'
+  import BarChart from './components/BarChart.vue'
 </script>
 
 <template>
-  <div id='app'>
-   <ForecastChart>FOO</ForecastChart> 
+  <div id="app">
+    <BarChart /> 
   </div>
 </template>
 
