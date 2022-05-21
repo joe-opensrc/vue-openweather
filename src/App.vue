@@ -1,5 +1,5 @@
 <script setup>
-  import BarChart from './components/BarChart.vue'
+  import AreaChart from './components/AreaChart.vue'
 </script>
 
 <style>
@@ -12,7 +12,7 @@
 
 <template>
   <div id="app">
-    <BarChart /> 
+    <AreaChart /> 
   </div>
 </template>
 
