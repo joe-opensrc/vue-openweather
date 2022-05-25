@@ -38,17 +38,34 @@
     padding: 24px;
   }
 
-  img {
+  .chart-header {
     width: 100%;
-    height: auto;
+  }
+
+  .chart-title {
+    font-size: 16px;
+  }
+
+  .block-img {
     margin: auto;
+    max-width: 350px;
+    min-width: 15%;
+    max-height: 25vw;
+    display: block;
+  }
+
+  div.spacer {
+    margin: 1em;
   }
 
 </style>
 
 <template>
-    <img id="openweatherLogo" alt="openweather logo" src="./assets/openweather_logo_white_cropped.png">
-    <h2>Forecast:</h2>
+  <div class="chart-header">
+    <img class="block-img" id="open-weather-logo" alt="openweather logo" src="./assets/openweather_logo_white_cropped.png">
+    <div class="spacer" />
+    <div class="chart-title">Forecast:</div>
+  </div>
     <ForecastChart :chart-data="chartData" :chart-options="chartOptions"/>
-    <div>{{ fcdata }}</div>;
+    <!-- <div>{{ fcdata }}</div> -->
 </template>
