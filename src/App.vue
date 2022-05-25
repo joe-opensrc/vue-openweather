@@ -8,7 +8,9 @@
         }
 
   const chartOptions = {
-          responsive: true 
+          responsive: true,
+          backgroundColor: "#f0f0f0",
+          borderColor: "#f0f0f0"
         }
 
 </script>
