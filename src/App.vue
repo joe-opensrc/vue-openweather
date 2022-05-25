@@ -33,7 +33,7 @@
 </style>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <h1>Forecast Charts:</h1>
+    <img id="openweatherLogo" alt="openweather logo" src="./assets/openweather_logo_white_cropped.png">
+    <h2>Forecast:</h2>
     <ForecastChart :chart-data="fdata" :chart-options="copts"/>
 </template>
