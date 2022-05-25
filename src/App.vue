@@ -7,6 +7,10 @@
           datasets: [ { data: [40, 20, 12] } ]
         }
 
+  const copts = {
+          responsive: true 
+        }
+
 </script>
 
 <style>
@@ -20,6 +24,5 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
   <h1>Forecast Charts:</h1>
-  <ForecastChart :chart-data="fdata"/>
-
+    <ForecastChart :chart-data="fdata" :chart-options="copts"/>
 </template>
