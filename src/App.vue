@@ -1,10 +1,22 @@
 <script setup>
 
   import ForecastChart from './components/ForecastChart.vue'
+  import fcdata from './assets/json/openweather_forecast_20220512.json'
+
+  const labels = fcdata.list.map( f => f.dt_txt )
+  const data   = fcdata.list.map( f => f.main.feels_like )
+
+  console.log(labels)
+  console.log(data)
 
   const chartData = { 
-          labels: [ 'January', 'February', 'March' ],
-          datasets: [ { data: [40, 20, 12] } ]
+          labels: labels,
+          datasets: [ 
+            { 
+              label: "feels_like",
+              data: data,
+            } 
+          ]
         }
 
   const chartOptions = {
