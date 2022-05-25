@@ -7,13 +7,21 @@
   ChartJS.register(Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale, PointElement)
 
   const props = defineProps({
-          chartData: Object
+          chartId: {
+            type: String,
+            default: 'forecast-chart'
+          },
+          chartData: { 
+            type: Object
+          },
+          chartOptions: {
+            type: Object
+          }
+
         }) 
 
 </script> 
 
 <template>
-  <h>FOO</h><br />
-  <h>BAR</h><br />
-  <Line :chart-data="props.chartData" />
+  <Line :id="props.chartId" :class="props.chartId" :chart-data="props.chartData" :chart-options="props.chartOptions" />
 </template>
