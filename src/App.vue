@@ -1,5 +1,12 @@
 <script setup>
+
   import ForecastChart from './components/ForecastChart.vue'
+
+  const fdata = { 
+          labels: [ 'January', 'February', 'March' ],
+          datasets: [ { data: [40, 20, 12] } ]
+        }
+
 </script>
 
 <style>
@@ -13,6 +20,6 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
   <h1>Forecast Charts:</h1>
-  <ForecastChart />
+  <ForecastChart :chart-data="fdata"/>
 
 </template>
