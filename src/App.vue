@@ -18,7 +18,18 @@
     background-color: #0f0f0f; 
     color: #f0f0ff;
   }
-        
+
+  #app {
+    margin: auto;
+    padding: 24px;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    margin: auto;
+  }
+
 </style>
 
 <template>
