@@ -2,12 +2,12 @@
 
   import ForecastChart from './components/ForecastChart.vue'
 
-  const fdata = { 
+  const chartData = { 
           labels: [ 'January', 'February', 'March' ],
           datasets: [ { data: [40, 20, 12] } ]
         }
 
-  const copts = {
+  const chartOptions = {
           responsive: true 
         }
 
@@ -35,5 +35,6 @@
 <template>
     <img id="openweatherLogo" alt="openweather logo" src="./assets/openweather_logo_white_cropped.png">
     <h2>Forecast:</h2>
-    <ForecastChart :chart-data="fdata" :chart-options="copts"/>
+    <ForecastChart :chart-data="chartData" :chart-options="chartOptions"/>
+    <div>{{ fcdata }}</div>;
 </template>
