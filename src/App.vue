@@ -1,16 +1,17 @@
 <script setup>
 
   import ForecastChart from './components/ForecastChart.vue'
+  import 'chartjs-adapter-date-fns'
+
   import fcdata from './assets/json/openweather_forecast_20220512.json'
 
-  const labels = fcdata.list.map( f => f.dt_txt )
-  const data   = fcdata.list.map( f => f.main.feels_like )
-
-  console.log(labels)
-  console.log(data)
+  const data = fcdata.list.map( f => { return { "x": f.dt_txt, "y": f.main.feels_like  }; } )
+  const city = fcdata.city.name
+  const srise = new Date( fcdata.city.sunrise * 1000 ).toTimeString().slice(0, 5)
+  const sset  = new Date( fcdata.city.sunset * 1000 ).toTimeString().slice(0, 5)
+  const tzone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
   const chartData = { 
-          labels: labels,
           datasets: [ 
             { 
               label: "feels_like",
@@ -22,7 +23,18 @@
   const chartOptions = {
           responsive: true,
           backgroundColor: "#f0f0f0",
-          borderColor: "#f0f0f0"
+          borderColor: "#f0f0f0",
+          bounds: 'labels',
+          scales: {
+            x: {
+              type: 'time',
+              time: {
+                displayFormats: {
+                  hour: "MM-dd--HH:mm"
+                },
+              }
+            } 
+          }
         }
 
 </script>
@@ -42,6 +54,11 @@
     width: 100%;
   }
 
+  .center {
+    margin: auto;
+    width: 50%;
+  }
+
   .chart-title {
     font-size: 16px;
   }
@@ -58,14 +75,24 @@
     margin: 1em;
   }
 
+  div.chart-holder {
+    position: relative;
+    width: 90%;
+    height: 90%;
+
+  }
+
 </style>
 
 <template>
   <div class="chart-header">
     <img class="block-img" id="open-weather-logo" alt="openweather logo" src="./assets/openweather_logo_white_cropped.png">
     <div class="spacer" />
-    <div class="chart-title">Forecast:</div>
+    <div class="chart-title">Forecast ({{ city }}):</div>
   </div>
+  <div class="chart-holder">
     <ForecastChart :chart-data="chartData" :chart-options="chartOptions"/>
+    <div> ☀: {{ srise }} ★: {{ sset }}  [{{ tzone }}]</div>
+  </div>
     <!-- <div>{{ fcdata }}</div> -->
 </template>
