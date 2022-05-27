@@ -4,6 +4,7 @@
   import 'chartjs-adapter-date-fns'
 
   import fcdata from './assets/json/openweather_forecast_20220512.json'
+  import cwdata from './assets/json/openweather_weather_20220527.1.json'
 
   const data = fcdata.list.map( f => { return { "x": f.dt_txt, "y": f.main.feels_like  }; } )
   const city = fcdata.city.name
@@ -11,11 +12,18 @@
   const sset  = new Date( fcdata.city.sunset * 1000 ).toTimeString().slice(0, 5)
   const tzone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
+  console.log( { "x": new Date( cwdata.dt * 1000 ).toTimeString().slice(0,5), "y": cwdata.main.feels_like } )
   const chartData = { 
           datasets: [ 
             { 
-              label: "feels_like",
+              label: "forecast",
               data: data,
+            },
+            {
+              label: "current",
+              data: [ { "x": new Date( cwdata.dt * 1000 ), "y": cwdata.main.feels_like } ],
+              backgroundColor: "#3293C7",
+              borderColor: "#3293C7"
             } 
           ]
         }
