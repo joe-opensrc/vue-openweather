@@ -33,6 +33,7 @@
           backgroundColor: "#f0f0f0",
           borderColor: "#f0f0f0",
           bounds: 'labels',
+          borderWidth: 1,
           scales: {
             x: {
               type: 'time',
