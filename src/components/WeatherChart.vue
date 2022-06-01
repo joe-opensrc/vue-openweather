@@ -1,6 +1,7 @@
 <script setup>
 
-  import ForecastChart from './components/ForecastChart.vue'
+  import ForecastChart from '../components/ForecastChart.vue'
+  import ToggleButton from '../components/ToggleButton.vue'
   import 'chartjs-adapter-date-fns'
 
   import fcdata from './assets/json/openweather_forecast_20220512.json'
@@ -82,12 +83,12 @@
 
 <template>
   <div class="chart-header">
-    <img class="block-img" id="open-weather-logo" alt="openweather logo" src="./assets/openweather_logo_white_cropped.png">
     <div class="spacer" />
     <div class="chart-title">Forecast ({{ city }}):</div>
   </div>
   <div class="chart-holder">
-    <ForecastChart :chart-data="chartData" :chart-options="chartOptions"/>
+    <ToggleButton button-label="DisplayChart" @button-value="(x) => (showChart = x)" />
+    <ForecastChart v-show="showChart" :chart-data="chartData" :chart-options="chartOptions"/>
     <div> ☀: {{ srise }} ★: {{ sset }}  [{{ tzone }}]</div>
   </div>
     <!-- <div>{{ fcdata }}</div> -->
