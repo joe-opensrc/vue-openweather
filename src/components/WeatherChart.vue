@@ -46,18 +46,12 @@
           }
         }
 
-</script>
+  const props = defineProps({
+      showChart: { type: Boolean, default: false }
+   })
 
-<style>
-  body { 
-    background-color: #0f0f0f; 
-    color: #f0f0ff;
-  }
-
-  #app {
-    margin: auto;
-    padding: 24px;
-  }
+  import { ref } from 'vue'
+  var showChart = ref( props.showChart )
 
 </script>
   
