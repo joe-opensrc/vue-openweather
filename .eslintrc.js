@@ -13,6 +13,8 @@ module.exports = {
   },
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-unused-vars': process.env.ESLINT_GIT_DISABLE === 'true' ? 'off' : 'warn',
+    'no-empty': process.env.ESLINT_GIT_DISABLE === 'true' ? 'off' : 'warn'
   }
 }
