@@ -62,28 +62,11 @@
     width: 100%;
   }
 
-  .center {
-    margin: auto;
-    width: 50%;
-  }
-
   .chart-title {
     font-size: 16px;
   }
 
-  .block-img {
-    margin: auto;
-    max-width: 350px;
-    min-width: 15%;
-    max-height: 25vw;
-    display: block;
-  }
-
-  div.spacer {
-    margin: 1em;
-  }
-
-  div.chart-holder {
+  .chart-holder {
     position: relative;
     width: 90%;
     height: 90%;
