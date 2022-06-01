@@ -4,8 +4,8 @@
   import ToggleButton from '../components/ToggleButton.vue'
   import 'chartjs-adapter-date-fns'
 
-  import fcdata from './assets/json/openweather_forecast_20220512.json'
-  import cwdata from './assets/json/openweather_weather_20220527.1.json'
+  import fcdata from '../assets/json/openweather_forecast_20220512.json'
+  import cwdata from '../assets/json/openweather_weather_20220527.1.json'
 
   const data = fcdata.list.map( f => { return { "x": f.dt_txt, "y": f.main.feels_like  }; } )
   const city = fcdata.city.name
