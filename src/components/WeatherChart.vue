@@ -58,6 +58,11 @@
     padding: 24px;
   }
 
+</script>
+  
+
+<style scoped>
+
   .chart-header {
     width: 100%;
   }
