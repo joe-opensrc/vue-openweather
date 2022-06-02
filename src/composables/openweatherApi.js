@@ -1,13 +1,14 @@
 import axios from 'axios'
 import wrapper from 'axios-cache-plugin'
+import 'chartjs-adapter-date-fns'
+
+export { owApi }
 
 const owApi = wrapper(axios, {
   maxCacheSize: 15,
-  ttl: 259200000 // 3 days
+  ttl: 10800000 // 3 hours
   
 })
-
-export { owApi }
 
 // no filter, i.e., don't cache
 export async function fetchCurrent(){
@@ -40,3 +41,69 @@ export async function fetchForecast(){
   })
   return resp.data
 }
+
+
+export function parseForecastResponse(fcdata){
+
+  const data = fcdata.list.map( f => { return { "x": f.dt_txt, "y": f.main.feels_like  }; } )
+  const city = fcdata.city.name
+  const srise = new Date( fcdata.city.sunrise * 1000 ).toTimeString().slice(0, 5)
+  const sset  = new Date( fcdata.city.sunset  * 1000 ).toTimeString().slice(0, 5)
+  const tzone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+  return { "data":  data, 
+           "city":  city, 
+           "srise": srise, 
+           "sset":  sset, 
+           "tzone": tzone }
+
+}
+
+export async function updateForecastChart(fresp){
+}
+
+export const refreshForecastChartData = async function (d){
+    console.log("Cirith Ungol", d)
+    try {
+        console.log("Cirith Gorgo") 
+        var fcdata = await fetchForecast()
+        const fresp = await parseForecastResponse(fcdata) 
+        console.log("fcdata: ", fcdata)
+        console.log("rfc: ", fresp )
+        return fresp
+    }catch (error) {
+        console.log("Error! Could not reach the API." + error)
+        return {}
+    }
+
+}
+ 
+  export const defaultChartData = { 
+          datasets: [ 
+            { 
+              label: "placeholder",
+              data: [],
+            }
+          ]
+        }
+
+  export const defaultChartOptions = {
+          responsive: true,
+          backgroundColor: "#f0f0f0",
+          borderColor: "#f0f0f0",
+          bounds: 'labels',
+          borderWidth: 1,
+          scales: {
+            x: {
+              type: 'time',
+              time: {
+                displayFormats: {
+                  hour: "MM-dd--HH:mm"
+                },
+              }
+            } 
+          }
+        }
+
+
+

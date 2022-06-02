@@ -11,6 +11,7 @@
   #app {
     margin: auto;
     padding: 24px;
+    padding-left: 10px;
   }
 
   .center {

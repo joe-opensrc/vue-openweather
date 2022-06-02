@@ -1,57 +1,72 @@
 <script setup>
-
+  import { ref, computed, watch, watchEffect } from 'vue'
   import ForecastChart from '../components/ForecastChart.vue'
   import ToggleButton from '../components/ToggleButton.vue'
-  import 'chartjs-adapter-date-fns'
-
-  import fcdata from '../assets/json/openweather_forecast_20220512.json'
-  import cwdata from '../assets/json/openweather_weather_20220527.1.json'
-
-  const data = fcdata.list.map( f => { return { "x": f.dt_txt, "y": f.main.feels_like  }; } )
-  const city = fcdata.city.name
-  const srise = new Date( fcdata.city.sunrise * 1000 ).toTimeString().slice(0, 5)
-  const sset  = new Date( fcdata.city.sunset * 1000 ).toTimeString().slice(0, 5)
-  const tzone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-  const chartData = { 
-          datasets: [ 
-            { 
-              label: "forecast",
-              data: data,
-            },
-            {
-              label: "current",
-              data: [ { "x": new Date( cwdata.dt * 1000 ), "y": cwdata.main.feels_like } ],
-              backgroundColor: "#3293C7",
-              borderColor: "#3293C7"
-            } 
-          ]
-        }
-
-  const chartOptions = {
-          responsive: true,
-          backgroundColor: "#f0f0f0",
-          borderColor: "#f0f0f0",
-          bounds: 'labels',
-          borderWidth: 1,
-          scales: {
-            x: {
-              type: 'time',
-              time: {
-                displayFormats: {
-                  hour: "MM-dd--HH:mm"
-                },
-              }
-            } 
-          }
-        }
+  import { fetchForecast, parseForecastResponse, refreshForecastChartData, defaultChartData, defaultChartOptions } from '../composables/openweatherApi.js'
 
   const props = defineProps({
-      showChart: { type: Boolean, default: false }
+      showChart: { 
+        type: Boolean, 
+        default: false 
+      }
+
    })
 
-  import { ref } from 'vue'
+  //var { data, city, srise, sset, tzone } = parseForecastResponse(fcdata)
+  
   var showChart = ref( props.showChart )
+
+  var chartData = ref( defaultChartData )
+  var chartOptions = ref( defaultChartOptions )
+  // var crefresh = ref(false)
+  // const data = computed( () => { return chartData.value.datasets.length } ) 
+  var city = ref("Somewhere...")
+  var srise = ref(getTimeMiliEpoch(new Date(0)))
+  var sset =  ref(getTimeMiliEpoch(new Date(0)))
+  var tzone = ref(Intl.DateTimeFormat().resolvedOptions().timeZone)
+
+  // function loog(x){
+  //   console.log("loog: ", x)
+  //   crefresh = !crefresh
+  // }
+
+  function getTimeMiliEpoch(dtime){
+    return new Date( dtime * 1000 ).toTimeString().slice(0, 5)
+  }
+
+  async function refreshForecastChart() {
+
+    /*
+    if (skipCache) 
+      owApi.__removeFilter(/forecast/) ?
+      owApi.defaults.headers = {
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache',
+        'Expires': '0',
+      };
+    */
+
+    const resp = await fetchForecast()
+    console.log("resp:", resp)
+    
+    const data = resp.list.map( f => { return { "x": f.dt_txt, "y": f.main.feels_like  }; } )
+    // console.log("chartData: ", chartData )
+    console.log("data :", data )
+    chartData.value.datasets[0].data = data 
+  
+
+    // chartData.value.datasets[0].data = resp.list
+    city.value  = resp.city.name
+    srise.value = getTimeMiliEpoch( resp.city.sunrise )
+    sset.value  = getTimeMiliEpoch( resp.city.sunset )
+    tzone.value = resp.city.timezone / 3600
+
+  }
+ 
+
+  const buttonOptions = {
+    selfReset: true
+  } 
 
 </script>
   
@@ -73,17 +88,24 @@
 
   }
 
+  .button-holder {
+    display: flex;
+  }
+
 </style>
 
 <template>
   <div class="chart-header">
     <div class="spacer" />
-    <div class="chart-title">Forecast ({{ city }}):</div>
+    <div class="chart-title">Forecast ({{ city }})</div>
+    <div>☀: {{ srise }} ★: {{ sset }}  [{{ tzone }}]:</div>
+    <div class="spacer" />
+    <div class="button-holder">
+      <ToggleButton button-label="DisplayChart" @button-value="(x) => (showChart = x)" />
+      <ToggleButton button-label="RefreshChart" :button-options="buttonOptions" @click="refreshForecastChart" />
+    </div>
   </div>
   <div class="chart-holder">
-    <ToggleButton button-label="DisplayChart" @button-value="(x) => (showChart = x)" />
     <ForecastChart v-show="showChart" :chart-data="chartData" :chart-options="chartOptions"/>
-    <div> ☀: {{ srise }} ★: {{ sset }}  [{{ tzone }}]</div>
   </div>
-    <!-- <div>{{ fcdata }}</div> -->
 </template>
