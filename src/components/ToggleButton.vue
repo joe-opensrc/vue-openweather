@@ -1,38 +1,36 @@
-<script setup>
-  import { ref, onMounted } from 'vue'
-
-  const emit = defineEmits(['buttonValue'])
-  const props = defineProps({
-
-    buttonLabel: { type: String, default: "ToggleButton" },
-    buttonValue: { type: Boolean, default: false },
-    buttonOptions: { type: Object, default: (() => {}) }
-                
-    })
-
-  var buttonLabel = ref( props.buttonLabel )
-  var buttonValue = ref( props.buttonValue )
-  var buttonOptions = {}
-
+<script>
   const defaultButtonOptions = {
+    showLabel: true,
+    showValue: false,
     disableToggle: false,
     selfReset: false,
     timeout: 275
   }
+</script>
 
-  onMounted(()=>{
-    buttonOptions = { ...defaultButtonOptions, ...props.buttonOptions }
-  }) 
+<script setup>
+  import { ref, computed } from 'vue'
+
+
+  const emit = defineEmits(['buttonValue'])
+  const props = defineProps({
+
+      buttonLabel: { type: String, default: "ToggleButton" },
+      buttonValue: { type: Boolean, default: false },
+      buttonOptions: { type: Object, default: defaultButtonOptions }
+                
+  })
+
+  var buttonLabel = ref( props.buttonLabel )
+  var buttonValue = ref( props.buttonValue )
+  var buttonOptions = computed( function(){ return { ...defaultButtonOptions, ...props.buttonOptions } } )
 
   const buttonToggleWithOptions = function(){
-    if( ! buttonOptions.disableToggle == true ){
-
+    if( ! buttonOptions.value.disableToggle ){
       buttonToggle()
-      if( buttonOptions.selfReset == true ){
-        console.log("selfReset: ", buttonOptions.timeout )
-        setTimeout(buttonToggle, buttonOptions.timeout )
+      if( buttonOptions.value.selfReset == true ){
+        setTimeout(buttonToggle, buttonOptions.value.timeout )
       }
-  
     }
   }
 
@@ -45,7 +43,6 @@
   }
 
   function buttonActivate(){
-      console.log("bo: ", buttonOptions)
       buttonToggleWithOptions()
       emitButtonValue()
   }
@@ -91,11 +88,10 @@
 <template>
     <div class="button-area">
       <div class="button" :class="[ buttonValue? 'true' : 'false' ]" @click="buttonActivate">
-
-        <div class="button-label">
-          {{ buttonLabel }}:
+        <div v-if="buttonOptions.showLabel" class="button-label">
+          {{ buttonLabel }}
         </div>
-        <div class="button-value">
+        <div v-if="buttonOptions.showValue" class="button-value">
           {{ buttonValue }}
         </div>
       </div>  
