@@ -25,11 +25,6 @@
   var sset =  ref(getTimeMiliEpoch(new Date(0)))
   var tzone = ref(Intl.DateTimeFormat().resolvedOptions().timeZone)
 
-  // function loog(x){
-  //   console.log("loog: ", x)
-  //   crefresh = !crefresh
-  // }
-
   function getTimeMiliEpoch(dtime){
     return new Date( dtime * 1000 ).toTimeString().slice(0, 5)
   }
@@ -47,11 +42,7 @@
     */
 
     const resp = await fetchForecast()
-    console.log("resp:", resp)
-    
     const data = resp.list.map( f => { return { "x": f.dt_txt, "y": f.main.feels_like  }; } )
-    // console.log("chartData: ", chartData )
-    console.log("data :", data )
     chartData.value.datasets[0].data = data 
   
 

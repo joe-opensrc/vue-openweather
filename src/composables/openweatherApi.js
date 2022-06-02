@@ -62,15 +62,10 @@ export function parseForecastResponse(fcdata){
 export async function updateForecastChart(fresp){
 }
 
-export const refreshForecastChartData = async function (d){
-    console.log("Cirith Ungol", d)
+export const refreshForecastChartData = async function (){
     try {
-        console.log("Cirith Gorgo") 
         var fcdata = await fetchForecast()
-        const fresp = await parseForecastResponse(fcdata) 
-        console.log("fcdata: ", fcdata)
-        console.log("rfc: ", fresp )
-        return fresp
+        return await parseForecastResponse(fcdata) 
     }catch (error) {
         console.log("Error! Could not reach the API." + error)
         return {}
