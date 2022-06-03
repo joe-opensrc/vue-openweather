@@ -63,7 +63,7 @@
     sset.value  = getTimeMiliEpoch( resp.city.sunset  + tzoff )
 
     const fcname = city.value + "_fc"
-    // function candidate
+    // function candidate?
     var fcdset = chartData.value.datasets.find( 
     (ds) => { 
 
