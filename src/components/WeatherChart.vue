@@ -46,7 +46,6 @@
 
     const resp = await fetchForecast()
     const data = resp.list.map( f => { return { "x": f.dt_txt, "y": f.main.feels_like  }; } )
-    chartData.value.datasets[0].data = data 
   
 
     // chartData.value.datasets[0].data = resp.list
@@ -54,6 +53,22 @@
     srise.value = getTimeMiliEpoch( resp.city.sunrise )
     sset.value  = getTimeMiliEpoch( resp.city.sunset )
     tzone.value = resp.city.timezone / 3600
+
+    const fcname = city.value + "_fc"
+    // function candidate
+    var fcdset = chartData.value.datasets.find( 
+    (ds) => { 
+
+      if ( ds.label === "placeholder_fc" ||  ds.label === fcname ){
+        return ds
+      }
+
+    }) 
+
+    if (fcdset){
+      fcdset.label = fcname
+      fcdset.data = data
+    }
 
   }
  

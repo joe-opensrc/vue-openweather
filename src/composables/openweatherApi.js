@@ -76,7 +76,7 @@ export const refreshForecastChartData = async function (){
   export const defaultChartData = { 
           datasets: [ 
             { 
-              label: "placeholder",
+              label: "placeholder_fc",
               data: [],
             }
           ]
