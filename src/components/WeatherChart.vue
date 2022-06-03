@@ -50,9 +50,17 @@
 
     // chartData.value.datasets[0].data = resp.list
     city.value  = resp.city.name
-    srise.value = getTimeMiliEpoch( resp.city.sunrise )
-    sset.value  = getTimeMiliEpoch( resp.city.sunset )
-    tzone.value = resp.city.timezone / 3600
+
+    const ltzoff = new Date().getTimezoneOffset() * 60
+    const dtzoff = resp.city.timezone 
+    const tzoff  = ltzoff + dtzoff
+
+    // console.log( ltzoff, dtzoff, tzoff ) 
+
+    tzone.value = "UTC+" + dtzoff / 3600
+
+    srise.value = getTimeMiliEpoch( resp.city.sunrise + tzoff )
+    sset.value  = getTimeMiliEpoch( resp.city.sunset  + tzoff )
 
     const fcname = city.value + "_fc"
     // function candidate
