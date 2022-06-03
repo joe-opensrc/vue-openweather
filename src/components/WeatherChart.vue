@@ -30,7 +30,10 @@
   }
 
   async function refreshForecastChart() {
-
+    if ( ! navigator.onLine ){ 
+      console.log("Cannot request whilst offline!")
+      return {}
+    }
     /*
     if (skipCache) 
       owApi.__removeFilter(/forecast/) ?
