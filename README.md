@@ -46,6 +46,7 @@ npm install -g yarn
 ```
 source ~/novirts/vueopen/bin/activate 
 yarn --version
+yarn add @vue/cli @vue/cli-service @vue/cli-plugin-babel @vue/cli-plugin-eslint
 yarn serve
 ```
 
