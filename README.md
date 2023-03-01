@@ -31,6 +31,7 @@ You need 3 bits of info:
 - Country Code 
 - City Name 
 
+There's an example: [dot-env.local](dot-env.local)
 e.g.,
 
 ```ini
