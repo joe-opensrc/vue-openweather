@@ -19,7 +19,7 @@ Use virtualenv / venv to create pyvirtdir:
 
 `python -mvenv --copies ~/pyvirts/nodeenv`
 
-###### Use pip to install nodeenv
+###### Use pip to install nodeenv:
 
 ```
 source ~/pyvirts/nodeenv/bin/activate
@@ -47,8 +47,6 @@ yarn serve
 
 There's a script if you're feeling brave! [yarnVirt.sh](yarnVirt.sh)
 
-
-
 ###### API config sits in `.env.local`
 
 You need 3 bits of info: 
@@ -66,17 +64,23 @@ VUE_APP_OWM_GEO_CC="CH"
 VUE_APP_OWM_GEO_CN="Zurich"
 ```
 
-Dockerised Version:
+Just remember to:
+
+ `cp dot-env.local .env.local`
+
+
+
+##### Dockerised Version:
 
 The following are examples that worked for me, YMMV! :D 
 
-Build:
+###### Build:
 
 ```docker
 docker build -t myrepo/vue-openweather .
 ```
 
-Run:
+###### Run:
 
 ```docker
 docker run --name vue-openweather --hostname vue-openweather -p 0.0.0.0:443:443 -d myrepo/vue-openweather
