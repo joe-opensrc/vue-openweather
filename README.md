@@ -6,29 +6,38 @@ Fetches a 42hr Weather Forecast via the [OpenWeatherMap API](https://openweather
 
 (Requires a free account).
 
-Fetch:
+###### Fetch:
+
 ```
 git clone https://github.com/joe-opensrc/vue-openweather.git
 cd vue-openweather
 ```
 
-Development is via yarn:
+###### App needs Yarn:
 
-# Use virtualenv / venv to create pyvirtdir
-python -mvenv --copies ~/pyvirts/nodeenv
+Use virtualenv / venv to create pyvirtdir:
 
-# use pip to install nodeenv 
+`python -mvenv --copies ~/pyvirts/nodeenv`
+
+###### Use pip to install nodeenv
+
+```
 source ~/pyvirts/nodeenv/bin/activate
-pip install nodeenv 
+pip install nodeenv
+```
 
-# Use nodeenv to install npm
-nodeenv -n lts ~/novirts/vueopen
+###### Use nodeenv to install npm:
 
-# Use npm to install yarn:
+`nodeenv -n lts ~/novirts/vueopen`
+
+###### Use npm to install yarn:
+
+```
 source ~/novirts/vueopen/bin/activate
 npm install -g yarn
+```
 
-Yarn should then work:
+###### Yarn should then work:
 
 ```
 source ~/novirts/vueopen/bin/activate 
@@ -36,10 +45,11 @@ yarn --version
 yarn serve
 ```
 
-There's a script if you're feeling brave!
-[yarnVirt.sh](yarnVirt.sh)
+There's a script if you're feeling brave! [yarnVirt.sh](yarnVirt.sh)
 
-API config sits in `.env.local`
+
+
+###### API config sits in `.env.local`
 
 You need 3 bits of info: 
 
