@@ -5,11 +5,23 @@
 Fetches a 42hr Weather Forecast via the [OpenWeatherMap API](https://openweathermap.org/api)
 (Requires a free account).
 
+Development is via yarn:
 
+Use virtualenv / venv to install nodeenv:
+`python -mvenv --copies ~/pyvirts/nodeenv`
 
-Development via yarn:
+Use nodeenv to install node/yarn:
+`source ~/pyvirts/nodeenv/bin/activate`
+
+Use npm to install yarn:
+`npm install -g yarn`
+
+Yarn then works, e.g.:
 
 `yarn serve`
+
+There's a script if you're feeling brave!
+[yarnVirt.sh](yarnVirt.sh)
 
 API config sits in `.env.local`
 
@@ -30,8 +42,6 @@ VUE_APP_OWM_GEO_CN="Zurich"
 Dockerised Version:
 
 The following are examples that worked for me, YMMV! :D 
-
-
 
 Build:
 
