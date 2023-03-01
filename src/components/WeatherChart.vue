@@ -2,7 +2,7 @@
   import { ref, computed, watch, watchEffect } from 'vue'
   import ForecastChart from '../components/ForecastChart.vue'
   import ToggleButton from '../components/ToggleButton.vue'
-  import { fetchForecast, parseForecastResponse, refreshForecastChartData, defaultChartData, defaultChartOptions } from '../composables/openweatherApi.js'
+  import { fetchGeoLoc, fetchForecast, parseForecastResponse, refreshForecastChartData, defaultChartData, defaultChartOptions } from '../composables/openweatherApi.js'
 
   const props = defineProps({
       showChart: { 
