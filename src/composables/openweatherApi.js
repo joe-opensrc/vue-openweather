@@ -42,14 +42,15 @@ export async function fetchGeoLoc(country=process.env.VUE_APP_OWM_GEO_CC,city=pr
 
 // no filter, i.e., don't cache
 export async function fetchCurrent(){
+  const loc = await fetchGeoLoc()
   const resp = await owApi({
     url: 'https://api.openweathermap.org/data/2.5/weather',
       method: 'get',
       params: {
           appid: process.env.VUE_APP_OWM_APPID, ,
           units: "metric",
-          lat: 41.232078,
-          lon: 1.795869,
+          lat:   loc.lat,
+          lon:   loc.lon,
       }
   })
   return resp.data
@@ -58,14 +59,15 @@ export async function fetchCurrent(){
 // add try/catch
 owApi.__addFilter(/forecast/)
 export async function fetchForecast(){
+  const loc = await fetchGeoLoc()
   const resp = await owApi({
     url: 'https://api.openweathermap.org/data/2.5/forecast',
       method: 'get',
       params: {
           appid: process.env.VUE_APP_OWM_APPID, ,
           units: "metric",
-          lat: 41.232078,
-          lon: 1.795869,
+          lat: loc.lat,
+          lon: loc.lon,
           cnt: 14,
       }
   })
