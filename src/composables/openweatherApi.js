@@ -47,7 +47,7 @@ export async function fetchCurrent(){
     url: 'https://api.openweathermap.org/data/2.5/weather',
       method: 'get',
       params: {
-          appid: process.env.VUE_APP_OWM_APPID, ,
+          appid: process.env.VUE_APP_OWM_APPID, //dot env not worky and cant control when this get loaded 
           units: "metric",
           lat:   loc.lat,
           lon:   loc.lon,
@@ -64,7 +64,7 @@ export async function fetchForecast(){
     url: 'https://api.openweathermap.org/data/2.5/forecast',
       method: 'get',
       params: {
-          appid: process.env.VUE_APP_OWM_APPID, ,
+          appid: process.env.VUE_APP_OWM_APPID, 
           units: "metric",
           lat: loc.lat,
           lon: loc.lon,
