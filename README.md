@@ -17,7 +17,9 @@ cd vue-openweather
 
 Use virtualenv / venv to create pyvirtdir:
 
-`python -mvenv --copies ~/pyvirts/nodeenv`
+```
+python -mvenv --copies ~/pyvirts/nodeenv`
+```
 
 ###### Use pip to install nodeenv:
 
@@ -28,7 +30,9 @@ pip install nodeenv
 
 ###### Use nodeenv to install npm:
 
-`nodeenv -n lts ~/novirts/vueopen`
+```
+nodeenv -n lts ~/novirts/vueopen`
+```
 
 ###### Use npm to install yarn:
 
