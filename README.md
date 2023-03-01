@@ -64,8 +64,8 @@ VUE_APP_OWM_GEO_CC="CH"
 VUE_APP_OWM_GEO_CN="Zurich"
 ```
 
-Just remember to: `cp dot-env.local .env.local`
-and add valid data. (There's not much error checking ;))
+Just remember to: `cp dot-env.local .env.local` </br>
+and add valid data. (There's not much in the way of error checking ;))
 
 
 ##### Dockerised Version:
