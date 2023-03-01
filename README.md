@@ -1,4 +1,4 @@
-# openweather
+# openweather.2
 
 ## Project setup
 ```

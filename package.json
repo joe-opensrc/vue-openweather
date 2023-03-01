@@ -1,17 +1,22 @@
 {
-  "name": "openweather",
+  "name": "openweather.2",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --https",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@observablehq/plot": "^0.4.3",
+    "axios": "^0.27.2",
+    "axios-cache-plugin": "^0.1.0",
+    "chart.js": "^3.7.1",
+    "chartjs-adapter-date-fns": "^2.0.0",
     "core-js": "^3.8.3",
-    "d3": "^7.4.4",
-    "vue": "^3.2.13"
+    "date-fns": "^2.28.0",
+    "dotenv": "^16.0.1",
+    "vue": "^3.2.13",
+    "vue-chartjs": "^4.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
@@ -20,25 +25,10 @@
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
     "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^8.0.3"
+    "eslint-plugin-vue": "^8.0.3",
+    "lint-staged": "^11.1.2"
   },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/strongly-recommended",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "@babel/eslint-parser"
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead",
-    "not ie 11"
-  ]
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  }
 }
