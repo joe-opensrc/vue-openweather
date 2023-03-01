@@ -4,7 +4,7 @@
 
 Fetches a 42hr Weather Forecast via the [OpenWeatherMap API](https://openweathermap.org/api)
 
-(Requires a free account).
+(Requires a [free account](https://home.openweathermap.org/users/sign_up)).
 
 ###### Fetch:
 
