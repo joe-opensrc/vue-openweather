@@ -14,18 +14,27 @@ cd vue-openweather
 
 Development is via yarn:
 
-Use virtualenv / venv to install nodeenv:
-`python -mvenv --copies ~/pyvirts/nodeenv`
+# Use virtualenv / venv to create pyvirtdir
+python -mvenv --copies ~/pyvirts/nodeenv
 
-Use nodeenv to install node/yarn:
-`source ~/pyvirts/nodeenv/bin/activate`
+# use pip to install nodeenv 
+source ~/pyvirts/nodeenv/bin/activate
+pip install nodeenv 
 
-Use npm to install yarn:
-`npm install -g yarn`
+# Use nodeenv to install npm
+nodeenv -n lts ~/novirts/vueopen
 
-Yarn then works, e.g.:
+# Use npm to install yarn:
+source ~/novirts/vueopen/bin/activate
+npm install -g yarn
 
-`yarn serve`
+Yarn should then work:
+
+```
+source ~/novirts/vueopen/bin/activate 
+yarn --version
+yarn serve
+```
 
 There's a script if you're feeling brave!
 [yarnVirt.sh](yarnVirt.sh)
