@@ -10,6 +10,36 @@ const owApi = wrapper(axios, {
   
 })
 
+export async function fetchGeoLoc(country=process.env.VUE_APP_OWM_GEO_CC,city=process.env.VUE_APP_OWM_GEO_CN){
+  // console.log( city + ",," + country )
+  const resp = await owApi({
+    url: 'https://api.openweathermap.org/geo/1.0/direct',
+    method: 'get',
+    params: { 
+      appid: process.env.VUE_APP_OWM_APPID, 
+      q: city + ",," + country,
+      limit: 1
+    }
+  }).catch(err => {
+    console.log( err.toJSON() )
+    return err.code
+  })
+
+  // TODO: need to setup an error messaging system
+  // for now, request data of McMurdo Station
+  if( resp.data.length == 0 ){
+    return{
+      lat: -77.8499966,
+      lon: 166.666664
+    }
+  }else{
+    return { 
+      lat: resp.data[0].lat, 
+      lon: resp.data[0].lon 
+    }
+  }
+}
+
 // no filter, i.e., don't cache
 export async function fetchCurrent(){
   const resp = await owApi({
