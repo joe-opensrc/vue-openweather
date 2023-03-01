@@ -50,6 +50,7 @@ yarn add @vue/cli @vue/cli-service @vue/cli-plugin-babel @vue/cli-plugin-eslint
 yarn serve
 ```
 
+This will download/install ~380MB! </br>
 There's a script if you're feeling brave! [yarnVirt.sh](yarnVirt.sh)
 
 ###### API config sits in `.env.local`
