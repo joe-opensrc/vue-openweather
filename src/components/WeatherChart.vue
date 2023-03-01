@@ -34,6 +34,7 @@
       console.log("Cannot request whilst offline!")
       return {}
     }
+
     /*
     if (skipCache) 
       owApi.__removeFilter(/forecast/) ?
@@ -47,7 +48,6 @@
     const resp = await fetchForecast()
     const data = resp.list.map( f => { return { "x": f.dt_txt, "y": f.main.feels_like  }; } )
   
-
     // chartData.value.datasets[0].data = resp.list
     city.value  = resp.city.name
 
