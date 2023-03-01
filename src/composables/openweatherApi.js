@@ -71,6 +71,7 @@ export async function fetchForecast(){
           cnt: 14,
       }
   })
+
   return resp.data
 }
 
