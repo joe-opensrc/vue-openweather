@@ -3,7 +3,6 @@
 == Using Vue, Axios and ChartJS. == 
 
 Fetches a 42hr Weather Forecast via the [OpenWeatherMap API](https://openweathermap.org/api)
-
 (Requires a free account).
 
 
@@ -11,8 +10,6 @@ Fetches a 42hr Weather Forecast via the [OpenWeatherMap API](https://openweather
 Development via yarn:
 
 `yarn serve`
-
-
 
 API config sits in `.env.local`
 
